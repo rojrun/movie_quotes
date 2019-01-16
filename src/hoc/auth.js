@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-export default (WrappedComponent) => {
+export default (WrappedComponent, to = '/sign-in', redirect = false) => {
     class Auth extends Component {
         componentDidMount() {
             this.checkAuth();
@@ -11,12 +11,11 @@ export default (WrappedComponent) => {
             this.checkAuth();
         }
 
-
         checkAuth(){
             const {auth, history} = this.props;
 
-            if (!auth){
-                history.push('/sign-in');
+            if (auth === redirect){
+                history.push(to);
             }
         }
 
