@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {signUp} from '../../actions';
 import SignUpForm from './sign_up_form';
 
 class SignUp extends Component {
     handleSignUp = (values) => {
         console.log('Sign Up Value:', values);
+        this.props.signUp(values);
     }
 
     render() {
@@ -24,4 +26,6 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps)(SignUp);
+export default connect(mapStateToProps, {
+    signUp: signUp
+})(SignUp);

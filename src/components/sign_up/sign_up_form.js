@@ -23,6 +23,25 @@ const SignUpForm = props => {
     );
 }
 
+function validate({email, password, confirmPassword}){
+    const errors = {};
+
+    if (!email){
+        errors.email = 'Please enter your email';
+    }
+
+    if (!password){
+        errors.password = 'Please create a password';
+    }
+
+    if(password !== confirmPassword){
+        errors.confirmPassword = 'Passwords do not match';
+    }
+
+    return errors;
+}
+
 export default reduxForm({
-    form: 'sign-up-form'
+    form: 'sign-up-form',
+    validate: validate
 })(SignUpForm);
